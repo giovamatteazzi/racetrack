@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+    <title>RaceTrack</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--<script src="file.js" defer> </script>-->
+    <script type="module" src="../js/main.js" defer> </script>
+
+</head>
+
+<body>
+
+    <header>
+        <div id="titolo">
+            <h1>RaceTrack</h1>
+            <button class="pulsante-primario" onclick="window.location.href='guida.html'">Guida</button>
+        </div>
+        <div id="utente-sessione">
+            <p>Ospite</p>
+        </div>
+    </header>
+
+
+    <aside id="pannello-sinistro">
+        <div class="form-primario">
+            <h2>Registrati</h2>
+            <form> <!--onsubmit="authContext.handleSignup(event)"-->
+                <div class="form-gruppo">
+                    <label for="nome-utente">Nome utente</label>
+                    <input type="text" id="nome-utente" pattern="^[A-Za-z0-9]{3,15}$" required>
+                </div>
+                <div class="form-gruppo">
+                    <label for="password">Password</label>
+                    <input type="password" id="password"
+                        pattern="^(?=.*\d)(?=.*[!#$%&*^_\-~])[A-Za-z\d!#$%&*^_\-~]{6,30}$" required>
+                </div>
+                <button type="submit" class="pulsante-primario">Registrati</button>
+                <p>Già registrato?<!--<a href="#" onclick="userDashboard.showLoginForm()">Accedi</a>--></p>
+            </form>
+        </div>
+
+
+        <div class="form-primario nascosto">
+            <h2>Accedi</h2>
+            <form><!-- onsubmit="authContext.handleLogin(event)"-->
+                <div class="form-gruppo">
+                    <label for="nome-utente">Nome utente</label>
+                    <input type="text" id="nome-utente" required>
+                </div>
+                <div class="form-gruppo">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="pulsante-secondario">Accedi</button>
+                <p>Non registrato? <!--<a href="#" onclick="userDashboard.showSignUpForm()">Registrati</a>-->
+                </p>
+            </form>
+        </div>
+    </aside>
+
+
+    <div id="schermata-iniziale">
+        <form id="inizia-partita">
+            <div id="nomi-giocatori">
+                <div class="form-gruppo">
+                    <label for="giocatore-A">Giocatore A</label>
+                    <input type="text" id="giocatore-A" pattern="^[A-Za-z0-9]{3,15}$" required>
+                </div>
+                <div class="form-gruppo">
+                    <label for="giocatore-B">Giocatore B</label>
+                    <input type="text" id="giocatore-B" pattern="^[A-Za-z0-9]{3,15}$" required>
+                </div>
+            </div>
+            <select id="seleziona-pista">
+                <option value="pista1" selected>Pista 1</option>
+                <option value="pista2">Pista 2</option>
+            </select>
+            <button type="submit" class="pulsante-secondario">Gioca</button>
+        </form>
+    </div>
+
+
+    <main id="schermata-partita" class="nascosto">
+        <canvas id="canva"></canvas>
+
+        <aside id="pannello-destro">
+            <div id="turno-container">
+                <p>Turno di</p>
+                <p id="turno-giocatore"></p>
+            </div>
+
+            <p id="mosse">Mosse fatte: </p>
+
+            <button id="ricomincia-partita" class="pulsante-primario" onclick="rt.html.mostraSchermata()">Ricomincia
+                partita</button>
+
+            <div id="legenda">
+                <h3 style="color: black">Legenda</h3>
+                <div class="punto-legenda">
+                    <div class="quadrato verde-scuro"></div>
+                    <p class="testo-legenda">Punto principale</p>
+                </div>
+                <div class="punto-legenda">
+                    <div class="quadratino verde"></div>
+                    <p class="testo-legenda">Otto vicini</p>
+                </div>
+                <div class="punto-legenda">
+                    <div class="cerchio rosso-scuro"></div>
+                    <p class="testo-legenda">Fuori pista</p>
+                </div>
+                <div class="punto-legenda">
+                    <div class="cerchio arancione"></div>
+                    <p class="testo-legenda">Incidente</p>
+                </div>
+                <div class="punto-legenda">
+                    <div class="cerchio bianco"></div>
+                    <p class="testo-legenda">Fermata</p>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <div id="fine-partita" class="nascosto"> </div>
+
+</body>
+
+</html>

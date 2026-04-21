@@ -1,0 +1,231 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 8fr;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    grid-column: span 2;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+#titolo {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+button {
+    border: solid 1px;
+    padding: 0.2rem;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 1rem;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.pulsante-primario {
+    background-color: rgb(120, 152, 237);
+}
+
+#utente-sessione {
+    font-weight: bold;
+}
+
+#pannello-sinistro {
+    grid-column: 1;
+    background-color: azure;
+}
+
+#pannello-destro {
+    padding: 0.2rem;
+    grid-column: 2;
+    background-color: azure;
+}
+
+.form-primario {
+    margin: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-gruppo {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+}
+
+label {
+    color: black;
+}
+
+input,
+select {
+    border: solid 1px black;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.nascosto {
+    display: none !important;
+}
+
+#schermata-iniziale {
+    display: flex;
+    grid-column: 2;
+    flex-direction: column;
+    background-color: rgb(225, 92, 92);
+    padding: 1rem;
+    width: 90%;
+    border: solid 2px darkred;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+}
+
+#nomi-giocatori {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#nomi-giocatori label {
+    font-size: large;
+    gap: 2rem;
+}
+
+#seleziona-pista {
+    align-items: center;
+    justify-content: center;
+}
+
+#seleziona-pista input {
+    height: 2rem;
+    width: 7rem;
+}
+
+.pulsante-secondario {
+    background-color: rgb(236, 126, 126);
+}
+
+main {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+}
+
+canvas {
+    display: block;
+    background-color: white;
+    grid-column: 1;
+    margin: auto;
+}
+
+/* cosi' si adatta alla grandezza della pagina, avra' bisogno di un fattore di scala*/
+
+#turno-container {
+    width: 90%;
+    background-color: white;
+    height: 5rem;
+    margin: 1rem auto;
+    padding: 0.5rem;
+}
+
+#turno-giocatore {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+#mosse {
+    margin-left: 1rem;
+}
+
+#legenda {
+    background-color: white;
+    margin: auto;
+    width: 90%;
+}
+
+.punto-legenda {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    align-items: center;
+    color: rgb(83, 125, 125);
+    margin-left: 0.2rem;
+}
+
+.quadrato {
+    height: 8px;
+    width: 8px;
+}
+
+.quadratino {
+    height: 4px;
+    width: 4px;
+}
+
+.cerchio {
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    border: solid 1px black;
+}
+
+.verde-scuro {
+    background-color: darkgreen;
+}
+
+.verde {
+    background-color: lightgreen;
+}
+
+.rosso-scuro {
+    background-color: darkred;
+}
+
+.arancione {
+    background-color: orange;
+}
+
+.bianco {
+    background-color: white;
+}
+
+#fine-partita {
+    position: fixed;
+    top: 200px;
+    left: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column;
+    padding: 1rem;
+    margin: auto;
+    width: 20rem;
+    height: 10rem;
+}
