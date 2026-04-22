@@ -1,0 +1,15 @@
+* {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 16vw 84vw;
+    grid-template-rows: 16vh 84vh;
+    margin: 0;
+}
+
+.nascosto {
+    display: none !important;
+}

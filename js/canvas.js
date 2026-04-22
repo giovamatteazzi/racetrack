@@ -11,6 +11,13 @@ export class GraficaCanvas {
         this.canvas = canvas;
         this.larghezza = pista.matrice[0].length;
         this.altezza = pista.matrice.length;
+        this.ridimensiona();
+        this.ctx = canvas.getContext("2d");
+        this.pista = pista;
+
+    }
+
+    ridimensiona() {
         const rett = document.getElementById("canvas-container").getBoundingClientRect();
         const larghezzaDisponibile = rett.width;
         const altezzaDisponibile = rett.height;
@@ -19,8 +26,6 @@ export class GraficaCanvas {
         this.dimCella = Math.min(dimX, dimY);
         this.canvas.width = this.larghezza * this.dimCella;
         this.canvas.height = this.altezza * this.dimCella;
-        this.ctx = canvas.getContext("2d");
-        this.pista = pista;
     }
 
     disegnaGriglia() {

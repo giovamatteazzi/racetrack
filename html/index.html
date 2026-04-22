@@ -59,7 +59,7 @@
                     <label for="password-accesso">Password</label>
                     <input type="password" id="password-accesso" required>
                 </div>
-                <button type="submit" class="pulsante-secondario">Accedi</button>
+                <button type="submit" class="pulsante-primario">Accedi</button>
                 <p>Non registrato? <!--<a href="#" onclick="userDashboard.showSignUpForm()">Registrati</a>-->
                 </p>
             </form>
@@ -76,7 +76,7 @@
                 <option value="pista2">Pista 2</option>
             </select>
 
-            <div id="campi">
+            <div id="giocatori-container">
                 <input type="text" class="giocatore" id="giocatore-A" placeholder="Giocatore 1"
                     pattern="^[A-Za-z0-9\s]{3,10}$" required>
                 <input type="text" class="giocatore" id="giocatore-B" placeholder="Giocatore 2"
@@ -90,7 +90,7 @@
 
     <main id="schermata-partita" class="nascosto">
         <div id="canvas-container">
-            <canvas id="canva"></canvas>
+            <canvas id="canvas-gioco"></canvas>
         </div>
 
         <aside id="pannello-destro">

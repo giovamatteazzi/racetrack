@@ -26,6 +26,8 @@ class RaceTrack {
             const giocatoreA = form.querySelector("#giocatore-A");
             const giocatoreB = form.querySelector("#giocatore-B");
             const pista = form.querySelector("#seleziona-pista");
+            giocatoreA.value = giocatoreA.value.trim();
+            giocatoreB.value = giocatoreB.value.trim();
             giocatoreA.setCustomValidity("");
             giocatoreB.setCustomValidity("");
             pista.setCustomValidity("");
@@ -47,9 +49,15 @@ class RaceTrack {
             }
             this.avviaPartita(e)
         });
-        this.canvas = document.getElementById("canva");
+        this.canvas = document.getElementById("canvas-gioco");
         this.canvas.addEventListener("click", (e) => this.gestisciClick(e));
         this.canvas.addEventListener("mousemove", (e) => this.gestisciHover(e));
+        window.addEventListener("resize", () => {
+            if (!this.can || !this.partita)
+                return;
+            this.can.ridimensiona();
+            this.can.aggiorna(this.partita);
+        });
     }
 
     avviaPartita(e) {
@@ -119,6 +127,4 @@ class RaceTrack {
         const giocatore = this.partita.giocatoreCorrente();
         this.can.disegnaPrevisione(giocatore, puntoValido)
     }
-
-
 }

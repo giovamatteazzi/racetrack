@@ -1,0 +1,47 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: span 2;
+    padding: 0 1rem;
+    background-color: #1e293b;
+    color: white;
+}
+
+#titolo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+#titolo h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+#utente-sessione {
+    font-weight: bold;
+}
+
+#pannello-sinistro,
+#pannello-destro {
+    background-color: #1e293b;
+    color: #e2e8f0;
+}
+
+#pannello-sinistro {
+    grid-column: 1;
+}
+
+#pannello-destro {
+    grid-column: 2;
+    padding: 0.2rem;
+}
+
+main {
+    display: grid;
+    grid-template-columns: auto 16vw;
+    grid-column: 2;
+}

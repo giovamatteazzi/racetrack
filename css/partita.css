@@ -1,0 +1,84 @@
+#schermata-iniziale {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    border: 1px solid #991b1b;
+    border-radius: 12px;
+    background-color: #571313;
+    color: #fee2e2;
+}
+
+#inizia-partita {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#schermata-iniziale input,
+#schermata-iniziale select {
+    border: 1px solid #7f1d1d;
+    background-color: white;
+    color: black;
+}
+
+#seleziona-pista {
+    align-items: center;
+    justify-content: center;
+}
+
+#canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    background-color: white;
+}
+
+#turno-container,
+#mosse-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
+    padding: 0.6rem;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    background-color: #0f172a;
+}
+
+#turno {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#fine-partita {
+    position: fixed;
+    top: 40%;
+    left: 34%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 30vh;
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    color: white;
+}
