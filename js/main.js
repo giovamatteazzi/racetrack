@@ -63,13 +63,14 @@ class RaceTrack {
         const giocatoreA = new Giocatore(nomeA, COL_GIOCATORI[0]);
         const giocatoreB = new Giocatore(nomeB, COL_GIOCATORI[1]);
 
-        this.can = new GraficaCanvas(this.canvas, this.pista);
-
         this.partita = new Partita(this.pista);
         this.partita.aggiungiGiocatore(giocatoreA);
         this.partita.aggiungiGiocatore(giocatoreB);
 
         this.html.mostraPartita();
+
+        this.can = new GraficaCanvas(this.canvas, this.pista);
+
         this.partita.gestisciInizio();
         this.can.aggiorna(this.partita);
         this.html.aggiornaTurni(this.partita);
@@ -85,8 +86,8 @@ class RaceTrack {
         const scalaX = this.can.canvas.width / posCanva.width;
         const scalaY = this.can.canvas.height / posCanva.height;
         // fattore di scala
-        const x = Math.round((e.clientX - posCanva.left) * scalaX / CANVA.DIM_CELLA);
-        const y = Math.round((e.clientY - posCanva.top) * scalaY / CANVA.DIM_CELLA);
+        const x = Math.round((e.clientX - posCanva.left) * scalaX / this.can.dimCella);
+        const y = Math.round((e.clientY - posCanva.top) * scalaY / this.can.dimCella);
         if (!this.pista.dentro(x, y))
             return null;
         return { x: x, y: y };

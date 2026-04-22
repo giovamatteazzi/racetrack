@@ -12,8 +12,7 @@
     <!--favicon-->
     <link rel="stylesheet" href="../css/style.css">
 
-    <!--<script src="file.js" defer> </script>-->
-    <script type="module" src="../js/main.js" defer> </script>
+    <script type="module" src="../js/main.js"> </script>
 
 </head>
 
@@ -35,12 +34,12 @@
             <h2>Registrati</h2>
             <form> <!--\it="authContext.handleSignup(event)"-->
                 <div class="form-gruppo">
-                    <label for="nome-utente">Nome utente</label>
-                    <input type="text" id="nome-utente" pattern="^[A-Za-z0-9]{3,15}$" required>
+                    <label for="nome-utente-registrazione">Nome utente</label>
+                    <input type="text" id="nome-utente-registrazione" pattern="^[A-Za-z0-9]{3,15}$" required>
                 </div>
                 <div class="form-gruppo">
-                    <label for="password">Password</label>
-                    <input type="password" id="password"
+                    <label for="password-registrazione">Password</label>
+                    <input type="password" id="password-registrazione"
                         pattern="^(?=.*\d)(?=.*[!#$%&*^_\-~])[A-Za-z\d!#$%&*^_\-~]{6,30}$" required>
                 </div>
                 <button type="submit" class="pulsante-primario">Registrati</button>
@@ -53,12 +52,12 @@
             <h2>Accedi</h2>
             <form><!-- onsubmit="authContext.handleLogin(event)"-->
                 <div class="form-gruppo">
-                    <label for="nome-utente">Nome utente</label>
-                    <input type="text" id="nome-utente" required>
+                    <label for="nome-utente-accesso">Nome utente</label>
+                    <input type="text" id="nome-utente-accesso" required>
                 </div>
                 <div class="form-gruppo">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required>
+                    <label for="password-accesso">Password</label>
+                    <input type="password" id="password-accesso" required>
                 </div>
                 <button type="submit" class="pulsante-secondario">Accedi</button>
                 <p>Non registrato? <!--<a href="#" onclick="userDashboard.showSignUpForm()">Registrati</a>-->
@@ -90,7 +89,9 @@
 
 
     <main id="schermata-partita" class="nascosto">
-        <canvas id="canva"></canvas>
+        <div id="canvas-container">
+            <canvas id="canva"></canvas>
+        </div>
 
         <aside id="pannello-destro">
             <button id="ricomincia-partita" class="pulsante-primario">Ricomincia partita</button>

@@ -1,5 +1,5 @@
 export const CANVA = {
-    DIM_CELLA: 30,
+    DIM_CELLA: 0,
     R_GEN: 3, // generico raggio dei punti dentro/fuori
     R_ATT: 9, // raggio posizione attuale giocatori
     R_PAS: 3, // raggio posizioni passate giocatori

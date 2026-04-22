@@ -5,8 +5,8 @@
 body {
     display: grid;
     height: 100vh;
-    grid-template-columns: 16vw auto;
-    grid-template-rows: 16vh auto;
+    grid-template-columns: 16vw 84vw;
+    grid-template-rows: 16vh 84vh;
     height: 100vh;
     margin: 0;
 }
@@ -146,11 +146,6 @@ form select {
     justify-content: center;
 }
 
-#nomi-giocatori label {
-    font-size: large;
-    gap: 2rem;
-}
-
 #seleziona-pista {
     align-items: center;
     justify-content: center;
@@ -173,6 +168,15 @@ main {
     grid-column: 2;
     display: grid;
     grid-template-columns: auto 16vw;
+}
+
+#canvas-container {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 canvas {
@@ -238,7 +242,7 @@ canvas {
     display: flex;
     align-items: center;
     margin-left: 0.2rem;
-    font-size: 0.8;
+    font-size: 0.8rem;
     line-height: 0.5;
     gap: 0.4rem;
 }
