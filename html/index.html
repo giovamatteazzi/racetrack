@@ -33,7 +33,7 @@
     <aside id="pannello-sinistro">
         <div class="form-primario">
             <h2>Registrati</h2>
-            <form> <!--onsubmit="authContext.handleSignup(event)"-->
+            <form> <!--\it="authContext.handleSignup(event)"-->
                 <div class="form-gruppo">
                     <label for="nome-utente">Nome utente</label>
                     <input type="text" id="nome-utente" pattern="^[A-Za-z0-9]{3,15}$" required>
@@ -69,21 +69,21 @@
 
 
     <div id="schermata-iniziale">
-        <form id="inizia-partita">
-            <div id="nomi-giocatori">
-                <div class="form-gruppo">
-                    <label for="giocatore-A">Giocatore A</label>
-                    <input type="text" id="giocatore-A" pattern="^[A-Za-z0-9]{3,15}$" required>
-                </div>
-                <div class="form-gruppo">
-                    <label for="giocatore-B">Giocatore B</label>
-                    <input type="text" id="giocatore-B" pattern="^[A-Za-z0-9]{3,15}$" required>
-                </div>
-            </div>
-            <select id="seleziona-pista">
-                <option value="pista1" selected>Pista 1</option>
+        <form id="inizia-partita" novalidate>
+
+            <select id="seleziona-pista" required>
+                <option value="" selected>Pista</option>
+                <option value="pista1">Pista 1</option>
                 <option value="pista2">Pista 2</option>
             </select>
+
+            <div id="campi">
+                <input type="text" class="giocatore" id="giocatore-A" placeholder="Giocatore 1"
+                    pattern="^[A-Za-z0-9\s]{3,10}$" required>
+                <input type="text" class="giocatore" id="giocatore-B" placeholder="Giocatore 2"
+                    pattern="^[A-Za-z0-9\s]{3,10}$" required>
+            </div>
+
             <button type="submit" class="pulsante-secondario">Gioca</button>
         </form>
     </div>
@@ -93,37 +93,42 @@
         <canvas id="canva"></canvas>
 
         <aside id="pannello-destro">
+            <button id="ricomincia-partita" class="pulsante-primario">Ricomincia partita</button>
+
             <div id="turno-container">
-                <p>Turno di</p>
-                <p id="turno-giocatore"></p>
+                <b>Turno:</b>
+                <div id="turno"></div>
             </div>
 
-            <p id="mosse">Mosse fatte: </p>
+            <div id="mosse-container">
+                <b>Mosse:</b>
+                <p id="mosse"></p>
+            </div>
 
-            <button id="ricomincia-partita" class="pulsante-primario" onclick="rt.html.mostraSchermata()">Ricomincia
-                partita</button>
 
             <div id="legenda">
-                <h3 style="color: black">Legenda</h3>
-                <div class="punto-legenda">
-                    <div class="quadrato verde-scuro"></div>
-                    <p class="testo-legenda">Punto principale</p>
-                </div>
-                <div class="punto-legenda">
-                    <div class="quadratino verde"></div>
-                    <p class="testo-legenda">Otto vicini</p>
-                </div>
-                <div class="punto-legenda">
-                    <div class="cerchio rosso-scuro"></div>
-                    <p class="testo-legenda">Fuori pista</p>
-                </div>
-                <div class="punto-legenda">
-                    <div class="cerchio arancione"></div>
-                    <p class="testo-legenda">Incidente</p>
-                </div>
-                <div class="punto-legenda">
-                    <div class="cerchio bianco"></div>
-                    <p class="testo-legenda">Fermata</p>
+                <span id="mostra-legenda">Legenda</span>
+                <div id="contenuto-legenda">
+                    <div class="punto-legenda">
+                        <div class="quadrato verde-scuro"></div>
+                        <p class="testo-legenda">Punto principale</p>
+                    </div>
+                    <div class="punto-legenda">
+                        <div class="quadratino verde"></div>
+                        <p class="testo-legenda">Punti validi</p>
+                    </div>
+                    <div class="punto-legenda">
+                        <div class="quadratino rosso-scuro"></div>
+                        <p class="testo-legenda">Fuori pista</p>
+                    </div>
+                    <div class="punto-legenda">
+                        <div class="cerchio arancione"></div>
+                        <p class="testo-legenda">Incidente</p>
+                    </div>
+                    <div class="punto-legenda">
+                        <div class="cerchio bianco"></div>
+                        <p class="testo-legenda">Stop</p>
+                    </div>
                 </div>
             </div>
         </aside>

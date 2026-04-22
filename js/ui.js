@@ -1,11 +1,11 @@
-import { CANVA } from "./constanti.js";
-const { DIM_CELLA, R_GEN, R_ATT, R_PAS, SPE_TRA, SPE_PIS, L_QUO, L_QUINO } = CANVA;
+import { CANVA } from "./costanti.js";
+const { DIM_CELLA, R_GEN, R_ATT, R_PAS, SPE_GRI, SPE_TRA, SPE_INI, SPE_FIN, L_QUO, L_QUINO } = CANVA;
 
 export class GraficaHTML {
     constructor() {
         this.schermataIniziale = document.getElementById("schermata-iniziale");
         this.schermataPartita = document.getElementById("schermata-partita");
-        this.turno = document.getElementById("turno-giocatore");
+        this.turno = document.getElementById("turno");
         this.mosse = document.getElementById("mosse");
         this.fine = document.getElementById("fine-partita");
         this.ricominciaPartita = document.getElementById("ricomincia-partita");
@@ -15,8 +15,6 @@ export class GraficaHTML {
         this.ricominciaPartita.disabled = false;
         this.schermataIniziale.classList.add("nascosto");
         this.schermataPartita.classList.remove("nascosto");
-        document.getElementById("giocatore-A").value = "";
-        document.getElementById("giocatore-B").value = "";
     }
 
     mostraSchermata() {
@@ -33,11 +31,10 @@ export class GraficaHTML {
         qua.style.display = "inline-block";
         const nomeGio = document.createElement("p")
         nomeGio.textContent = partita.giocatoreCorrente().nome;
-
         this.turno.appendChild(qua);
         this.turno.appendChild(nomeGio);
 
-        this.mosse.textContent = "Mosse: " + Math.floor(partita.mosse);
+        this.mosse.textContent = + Math.floor(partita.mosse);
     }
 
     mostraVincitore(giocatore) {
@@ -49,6 +46,10 @@ export class GraficaHTML {
         const btn = document.createElement("button");
         btn.textContent = "Ricomincia";
         btn.classList.add("pulsante-secondario");
+        let colore = "#2356a8";
+        if (giocatore.colore === "red")
+            colore = "#9c2121";
+        btn.style.backgroundColor = colore;
         btn.addEventListener("click", () => {
             this.mostraSchermata();
             this.fine.classList.add("nascosto")

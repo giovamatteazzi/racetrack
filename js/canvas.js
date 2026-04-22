@@ -1,8 +1,8 @@
-import { CANVA } from "./constanti.js";
-const { DIM_CELLA, R_GEN, R_ATT, R_PAS, SPE_TRA, SPE_PIS, L_QUO, L_QUINO } = CANVA;
-import { SIMBOLO } from "./constanti.js";
+import { CANVA } from "./costanti.js";
+const { DIM_CELLA, R_GEN, R_ATT, R_PAS, SPE_GRI, SPE_TRA, SPE_INI, SPE_FIN, L_QUO, L_QUINO } = CANVA;
+import { SIMBOLO } from "./costanti.js";
 const { FUORI, DENTRO, INIZIO_1, INIZIO_N, INIZIO, FINE_1, FINE_N, FINE } = SIMBOLO;
-import { TIPO_PUNTO } from "./constanti.js";
+import { TIPO_PUNTO } from "./costanti.js";
 
 
 export class GraficaCanvas {
@@ -15,13 +15,11 @@ export class GraficaCanvas {
         this.canvas.height = this.altezza * DIM_CELLA;
         this.ctx = canvas.getContext("2d");
         this.pista = pista;
-        const rect = canvas.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
-        this.dimCella = rect.width / this.larghezza;
     }
 
     disegnaGriglia() {
-        this.ctx.strokeStyle = "#ddd"
+        this.ctx.strokeStyle = "#ddd";
+        this.ctx.lineWidth = SPE_GRI;
         for (let x = 0; x <= this.larghezza; x++) {
             this.ctx.beginPath();
             this.ctx.moveTo(x * DIM_CELLA, 0);
@@ -34,6 +32,48 @@ export class GraficaCanvas {
             this.ctx.lineTo(this.larghezza * DIM_CELLA, y * DIM_CELLA);
             this.ctx.stroke();
         }
+    }
+
+    disegnaPista2() {
+
+        let xj, yj, xk, yk;
+        let xg, yg, xh, yh;
+
+        for (let y = 0; y < this.altezza; y++) {
+            for (let x = 0; x < this.larghezza; x++) {
+
+                const punto = this.pista.matrice[y][x];
+
+                switch (punto) {
+                    case (INIZIO_1): xj = x; yj = y; break;
+                    case (INIZIO_N): xk = x; yk = y; break;
+                    case (FINE_1): xg = x; yg = y; break;
+                    case (FINE_N): xh = x; yh = y; break;
+                }
+                let colore;
+                if (punto === FUORI)
+                    colore = "#111827";
+                else
+                    colore = "#f8fafc"
+
+                this.ctx.fillStyle = colore;
+                let lato = DIM_CELLA + 1;
+                if (x === this.larghezza - 1 || y === this.altezza - 1)
+                    lato = DIM_CELLA * 3 / 2;
+                this.ctx.fillRect(x * DIM_CELLA - DIM_CELLA / 2, y * DIM_CELLA - DIM_CELLA / 2, lato, lato);
+            }
+        }
+
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = SPE_PIS;
+        this.ctx.beginPath();
+        this.ctx.moveTo(xj * DIM_CELLA, yj * DIM_CELLA);
+        this.ctx.lineTo(xk * DIM_CELLA, yk * DIM_CELLA);
+        this.ctx.stroke();
+        this.ctx.beginPath();
+        this.ctx.moveTo(xg * DIM_CELLA, yg * DIM_CELLA);
+        this.ctx.lineTo(xh * DIM_CELLA, yh * DIM_CELLA);
+        this.ctx.stroke();
     }
 
     disegnaPista() {
@@ -52,20 +92,34 @@ export class GraficaCanvas {
                     case (FINE_1): xg = x; yg = y; break;
                     case (FINE_N): xh = x; yh = y; break;
                 }
+
+                if (punto === FUORI) {
+                    this.ctx.fillStyle = "#444";
+                    this.ctx.beginPath();
+                    this.ctx.arc(x * DIM_CELLA, y * DIM_CELLA, R_GEN, 0, 2 * Math.PI);
+                    this.ctx.fill();
+                }
+
+                /* switch (punto) {
+                    case (INIZIO_1): xj = x; yj = y; break;
+                    case (INIZIO_N): xk = x; yk = y; break;
+                    case (FINE_1): xg = x; yg = y; break;
+                    case (FINE_N): xh = x; yh = y; break;
+                }
                 let colore;
                 if (punto === FUORI)
                     colore = "black";
                 else
-                    colore = "lightgray"
+                    colore = "white"
 
                 this.ctx.fillStyle = colore;
                 this.ctx.beginPath();
                 this.ctx.arc(x * DIM_CELLA, y * DIM_CELLA, R_GEN, 0, 2 * Math.PI);
-                this.ctx.fill();
+                this.ctx.fill(); */
             }
         }
 
-        this.ctx.strokeStyle = "black";
+        /* this.ctx.strokeStyle = "black";
         this.ctx.lineWidth = SPE_PIS;
         this.ctx.beginPath();
         this.ctx.moveTo(xj * DIM_CELLA, yj * DIM_CELLA);
@@ -74,7 +128,26 @@ export class GraficaCanvas {
         this.ctx.beginPath();
         this.ctx.moveTo(xg * DIM_CELLA, yg * DIM_CELLA);
         this.ctx.lineTo(xh * DIM_CELLA, yh * DIM_CELLA);
+        this.ctx.stroke(); */
+
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = SPE_INI;
+        this.ctx.setLineDash([4, 4]);
+        this.ctx.beginPath();
+        this.ctx.moveTo(xj * DIM_CELLA, yj * DIM_CELLA);
+        this.ctx.lineTo(xk * DIM_CELLA, yk * DIM_CELLA);
         this.ctx.stroke();
+
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = SPE_FIN;
+        this.ctx.setLineDash([10, 10]);
+        this.ctx.beginPath();
+        this.ctx.moveTo(xg * DIM_CELLA, yg * DIM_CELLA);
+        this.ctx.lineTo(xh * DIM_CELLA, yh * DIM_CELLA);
+        this.ctx.stroke();
+
+        this.ctx.setLineDash([]);
+
     }
 
     disegnaPosizione(giocatore) {

@@ -1,4 +1,4 @@
-import { SIMBOLO } from "./constanti.js";
+import { SIMBOLO } from "./costanti.js";
 
 export class Pista {
 

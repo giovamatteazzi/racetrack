@@ -4,13 +4,12 @@ import { GraficaCanvas } from "./canvas.js";
 import { Pista } from "./pista.js";
 import { piste } from "./dati.js";
 import { Giocatore } from "./giocatore.js";
-import { COL_GIOCATORI, STATO, CANVA } from "./constanti.js";
-import { TIPO_PUNTO } from "./constanti.js";
+import { COL_GIOCATORI, STATO, CANVA } from "./costanti.js";
+import { TIPO_PUNTO } from "./costanti.js";
 
 
-let rt;
 document.addEventListener("DOMContentLoaded", () => {
-    rt = new RaceTrack();
+    let rt = new RaceTrack();
 });
 
 class RaceTrack {
@@ -20,7 +19,34 @@ class RaceTrack {
         this.partita = null;
         this.can = null;
         this.pista = null;
-        document.getElementById("inizia-partita").addEventListener("submit", (e) => this.avviaPartita(e));
+
+        document.getElementById("ricomincia-partita").addEventListener("click", () => this.html.mostraSchermata())
+        document.getElementById("inizia-partita").addEventListener("submit", (e) => {
+            const form = e.target;
+            const giocatoreA = form.querySelector("#giocatore-A");
+            const giocatoreB = form.querySelector("#giocatore-B");
+            const pista = form.querySelector("#seleziona-pista");
+            giocatoreA.setCustomValidity("");
+            giocatoreB.setCustomValidity("");
+            pista.setCustomValidity("");
+
+            if (!giocatoreA.checkValidity()) {
+                giocatoreA.setCustomValidity("Scrivi un nome compreso tra i 3 e 10 caratteri senza simboli speciali");
+            }
+            if (!giocatoreB.checkValidity()) {
+                giocatoreB.setCustomValidity("Scrivi un nome compreso tra i 3 e 10 caratteri senza simboli speciali");
+            }
+            if (pista.value === "") {
+                pista.setCustomValidity("Seleziona una pista");
+            }
+
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                form.reportValidity();
+                return;
+            }
+            this.avviaPartita(e)
+        });
         this.canvas = document.getElementById("canva");
         this.canvas.addEventListener("click", (e) => this.gestisciClick(e));
         this.canvas.addEventListener("mousemove", (e) => this.gestisciHover(e));
