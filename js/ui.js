@@ -9,6 +9,9 @@ export class GraficaHTML {
         this.mosse = document.getElementById("mosse");
         this.fine = document.getElementById("fine-partita");
         this.ricominciaPartita = document.getElementById("ricomincia-partita");
+        this.registrazione = document.getElementById("registrazione");
+        this.accesso = document.getElementById("accesso");
+        this.utenteSessione = document.getElementById("utente-sessione");
     }
 
     mostraPartita() {
@@ -59,5 +62,21 @@ export class GraficaHTML {
         this.fine.style.backgroundColor = giocatore.colore;
         this.fine.classList.remove("nascosto");
         this.ricominciaPartita.disabled = true;
+    }
+
+    mostraAccesso() {
+        this.accesso.classList.remove("nascosto");
+        this.registrazione.classList.add("nascosto");
+    }
+
+    mostraRegistrazione() {
+        this.registrazione.classList.remove("nascosto");
+        this.accesso.classList.add("nascosto");
+    }
+
+    entra(nomeUtente) {
+        this.registrazione.classList.add("nascosto");
+        this.accesso.classList.add("nascosto")
+        this.utenteSessione.textContent = nomeUtente;
     }
 }

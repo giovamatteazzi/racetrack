@@ -6,6 +6,7 @@ import { piste } from "./dati.js";
 import { Giocatore } from "./giocatore.js";
 import { COL_GIOCATORI, STATO, CANVA } from "./costanti.js";
 import { TIPO_PUNTO } from "./costanti.js";
+import { ContestoApi } from "./contestoApi.js"
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,12 +21,14 @@ class RaceTrack {
         this.can = null;
         this.pista = null;
 
-        document.getElementById("ricomincia-partita").addEventListener("click", () => this.html.mostraSchermata())
+        this.api = new ContestoApi()
+
         document.getElementById("inizia-partita").addEventListener("submit", (e) => {
+            e.preventDefault();
             const form = e.target;
-            const giocatoreA = form.querySelector("#giocatore-A");
-            const giocatoreB = form.querySelector("#giocatore-B");
-            const pista = form.querySelector("#seleziona-pista");
+            const giocatoreA = document.getElementById("giocatore-A");
+            const giocatoreB = document.getElementById("giocatore-B");
+            const pista = document.getElementById("seleziona-pista");
             giocatoreA.value = giocatoreA.value.trim();
             giocatoreB.value = giocatoreB.value.trim();
             giocatoreA.setCustomValidity("");
@@ -49,6 +52,9 @@ class RaceTrack {
             }
             this.avviaPartita(e)
         });
+
+        document.getElementById("ricomincia-partita").addEventListener("click", () => this.html.mostraSchermata())
+
         this.canvas = document.getElementById("canvas-gioco");
         this.canvas.addEventListener("click", (e) => this.gestisciClick(e));
         this.canvas.addEventListener("mousemove", (e) => this.gestisciHover(e));
@@ -57,6 +63,39 @@ class RaceTrack {
                 return;
             this.can.ridimensiona();
             this.can.aggiorna(this.partita);
+        });
+
+        document.getElementById("registrati-accedi").addEventListener("click", () => this.html.mostraAccesso());
+        document.getElementById("accedi-registrati").addEventListener("click", () => this.html.mostraRegistrazione());
+
+
+        document.getElementById("form-registrazione").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const nomeUtente = document.getElementById("nome-utente-registrazione");
+            const password = document.getElementById("password-registrazione");
+            nomeUtente.value = nomeUtente.value.trim();
+            password.value = password.value.trim();
+
+            nomeUtente.setCustomValidity("");
+            password.setCustomValidity("");
+            if (!nomeUtente.checkValidity())
+                nomeUtente.setCustomValidity("Scrivi un nome compreso tra i 3 e i 30 caratteri.");
+            if (!password.checkValidity())
+                password.setCustomValidity("Includi una cifra e un simbolo speciale tra ! # $ % & * ^ _ - ~, compresa tra i 6 e i 30 caratteri.");
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                form.reportValidity();
+                return;
+            }
+
+            this.gestisciRegistrazione(nomeUtente.value, password.value);
+        });
+        document.getElementById("form-accesso").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const nomeUtente = document.getElementById("nome-utente-accesso");
+            const password = document.getElementById("password-accesso");
+            this.gestisciAccesso(nomeUtente.value.trim(), password.value.trim());
         });
     }
 
@@ -126,5 +165,20 @@ class RaceTrack {
             return;
         const giocatore = this.partita.giocatoreCorrente();
         this.can.disegnaPrevisione(giocatore, puntoValido)
+    }
+
+
+    async gestisciRegistrazione(nomeUtente, password) {
+        await this.api.registrati(nomeUtente, password);
+        if (this.api.autenticato) {
+            this.html.entra(nomeUtente);
+        }
+    }
+
+    async gestisciAccesso(nomeUtente, password) {
+        await this.api.accedi(nomeUtente, password);
+        if (this.api.autenticato) {
+            this.html.entra(nomeUtente);
+        }
     }
 }

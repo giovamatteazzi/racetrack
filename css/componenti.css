@@ -52,3 +52,13 @@ form select {
     background-color: lightgray;
     color: black;
 }
+
+.cambia-form {
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: white;
+}
+
+.cambia-form:hover {
+    color: rgb(120, 152, 237)
+}

@@ -30,12 +30,12 @@
 
 
     <aside id="pannello-sinistro">
-        <div class="form-primario">
+        <div id="registrazione" class="form-primario">
             <h2>Registrati</h2>
-            <form> <!--\it="authContext.handleSignup(event)"-->
+            <form id="form-registrazione" novalidate>
                 <div class="form-gruppo">
                     <label for="nome-utente-registrazione">Nome utente</label>
-                    <input type="text" id="nome-utente-registrazione" pattern="^[A-Za-z0-9]{3,15}$" required>
+                    <input type="text" id="nome-utente-registrazione" pattern="^[A-Za-z0-9!#$%&*^_-~]{3,30}$" required>
                 </div>
                 <div class="form-gruppo">
                     <label for="password-registrazione">Password</label>
@@ -43,14 +43,16 @@
                         pattern="^(?=.*\d)(?=.*[!#$%&*^_\-~])[A-Za-z\d!#$%&*^_\-~]{6,30}$" required>
                 </div>
                 <button type="submit" class="pulsante-primario">Registrati</button>
-                <p>Già registrato?<!--<a href="#" onclick="userDashboard.showLoginForm()">Accedi</a>--></p>
+                <p>Già registrato?
+                    <a href="#" class="cambia-form" id="registrati-accedi">Accedi</a>
+                </p>
             </form>
         </div>
 
 
-        <div class="form-primario nascosto">
+        <div id="accesso" class="form-primario nascosto">
             <h2>Accedi</h2>
-            <form><!-- onsubmit="authContext.handleLogin(event)"-->
+            <form id="form-accesso" novalidate>
                 <div class="form-gruppo">
                     <label for="nome-utente-accesso">Nome utente</label>
                     <input type="text" id="nome-utente-accesso" required>
@@ -60,7 +62,8 @@
                     <input type="password" id="password-accesso" required>
                 </div>
                 <button type="submit" class="pulsante-primario">Accedi</button>
-                <p>Non registrato? <!--<a href="#" onclick="userDashboard.showSignUpForm()">Registrati</a>-->
+                <p>Non registrato?
+                    <a href="#" class="cambia-form" id="accedi-registrati">Registrati</a>
                 </p>
             </form>
         </div>
