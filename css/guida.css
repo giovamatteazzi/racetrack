@@ -1,0 +1,88 @@
+@import url("./variabili.css");
+
+* {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+body {
+    margin: 0 auto;
+    padding: 2rem 0;
+    width: 80%;
+    line-height: 1.6;
+    background-color: var(--sfondo-pannello);
+    color: var(--testo-bianco);
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 0.3rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+span {
+    font-weight: bold;
+}
+
+.verde-scuro {
+    color: var(--verde-scuro);
+}
+
+.verde {
+    color: var(--verde);
+}
+
+.rosso {
+    color: var(--rosso);
+}
+
+.arancione {
+    color: var(--arancione);
+}
+
+.bianco {
+    color: var(--bianco);
+}
+
+ul {
+    margin: 0.5rem 0 1rem 0.6rem;
+}
+
+li {
+    margin-bottom: 0.1rem;
+}
+
+a {
+    color: var(--pulsante-primario);
+}
+
+a:hover {
+    color: var(--pulsante-primario-hover);
+    text-decoration: underline;
+}
+
+button {
+    margin: 1rem 2rem;
+    padding: 0.35rem 0.7rem;
+    border: solid 1px;
+    border-radius: 2px;
+    background-color: var(--pulsante-primario);
+    color: var(--testo-scuro);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--pulsante-primario-hover);
+}

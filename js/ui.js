@@ -1,5 +1,4 @@
 import { CANVA } from "./costanti.js";
-const { DIM_CELLA, R_GEN, R_ATT, R_PAS, SPE_GRI, SPE_TRA, SPE_INI, SPE_FIN, L_QUO, L_QUINO } = CANVA;
 
 export class GraficaHTML {
     constructor() {
@@ -31,8 +30,8 @@ export class GraficaHTML {
         this.turno.innerHTML = "";
         const qua = document.createElement("div");
         qua.style.backgroundColor = partita.giocatoreCorrente().colore;
-        qua.style.height = L_QUO + "px";
-        qua.style.width = L_QUO + "px";
+        qua.style.height = CANVA.L_QUO + "px";
+        qua.style.width = CANVA.L_QUO + "px";
         qua.style.display = "inline-block";
         const nomeGio = document.createElement("p")
         nomeGio.textContent = partita.giocatoreCorrente().nome;

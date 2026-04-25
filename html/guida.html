@@ -4,11 +4,63 @@
 <head>
     <title>Guida</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/guida.css">
+    <link rel="icon" href="../racetrack.svg">
 </head>
 
 <body>
     <h1>RaceTrack</h1>
-    <p>Questa è la guida per RaceTrack</p>
+    <p>
+        RaceTrack è un gioco per 2 giocatori che simula una gara automobilistica su un tracciato a griglia.
+        Il movimento adotta regole fisicamente realistiche: se affronti una curva troppo velocemente rischi di uscire di
+        pista, mentre se rallenti troppo perdi vantaggio.
+    </p>
+    <p>
+        Una versione rifinita del gioco fu pubblicata nel 1973 dal matematico Martin Gardner in una rivista
+        scientifica americana, sotto il nome di <a
+            href="https://www.scientificamerican.com/article/mathematical-games-1973-01/" target="_blank"
+            rel="noopener noreferrer">"Mathematical Games"</a>.
+    </p>
+
+    <h2>Regole</h2>
+    <p>
+        I giocatori partono dalla linea tratteggiata e si alternano nei turni.
+        Vince chi raggiunge per primo il traguardo a scacchi.
+    </p>
+    <p>
+        Per i movimenti, bisogna considerare a ogni turno la <b>velocità</b>, definita come il vettore che
+        descrive lo spostamento effettuato nel turno precedente.
+    </p>
+    <p>
+        Il <span class="verde-scuro">punto principale</span> è il vertice che raggiungeresti applicando alla tua
+        posizione il vettore velocità, come per inerzia.
+        A ogni mossa, puoi decidere di raggiungere questo o uno dei suoi <span class="verde">8
+            vicini</span>, cioè i vertici adiacenti nella griglia, in maniera del tutto analoga a una frenata o
+        un'accelerazione. Tuttavia, se vai a occupare la posizione in cui si trova l'avversario, avviene un <span
+            class="arancione">incidente</span> e riparti con velocità nulla, così come se vai <span class="rosso">fuori
+            pista</span>. In quest'ultimo caso, vieni proiettato nel punto di uscita e al turno successivo dovrai per
+        forza rientrare in carreggiata. A ogni turno, puoi anche decidere di stare <span class="bianco">fermo</span>,
+        annullando però la tua velocità.
+    </p>
+
+    <h2>Come giocare</h2>
+    <p>
+        Inserisci i nomi dei giocatori e seleziona uno dei 3 incredibili tracciati.
+        Sulla destra compariranno alcune informazioni utili per la tua partita. In ogni momento, potrai ritornare alla
+        schermata principale tramite appositi pulsanti.
+        Se effettui l'accesso, le partite verranno salvate e potrai consultare le statistiche
+        dei tuoi 2 scontri più frequenti.
+        Alcune partite sono già salvate con queste credenziali:
+    <ul>
+        <li><b>Nome utente:</b> Gio</li>
+        <li><b>Password: </b> Prova123!</li>
+    </ul>
+    </p>
+    <p>
+        Buon divertimento!
+        <button onclick="window.location.href='./index.html'">Gioca ora</button>
+    </p>
+
 </body>
 
 </html>

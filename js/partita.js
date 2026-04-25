@@ -150,15 +150,20 @@ export class Partita {
             return null;
         }
 
+        if (this.occupata(x, y)) {
+            giocatore.vx = 0;
+            giocatore.vy = 0;
+            giocatore.x = x;
+            giocatore.y = y;
+            giocatore.traccia.push({ x: x, y: y });
+            this.nuovoTurno();
+            return null;
+        }
+
         const xPuntoPrincipale = giocatore.x + giocatore.vx;
         const yPuntoPrincipale = giocatore.y + giocatore.vy;
         if (Math.abs(x - xPuntoPrincipale) > 1 || Math.abs(y - yPuntoPrincipale) > 1)
             return null;
-
-        if (this.occupata(x, y)) {
-            giocatore.vx = 0;
-            giocatore.vy = 0;
-        }
 
         const linea = this.Bresenham(giocatore.x, giocatore.y, x, y);
         for (let k = 1; k < linea.length; k++) {
@@ -173,13 +178,17 @@ export class Partita {
             }
 
             if (!this.pista.inStrada(lx, ly)) {
-                giocatore.x = lx;
-                giocatore.y = ly;
-                giocatore.vx = 0;
-                giocatore.vy = 0;
-                giocatore.traccia.push({ x: lx, y: ly });
-                this.nuovoTurno();
-                return null;
+                if (!this.pista.inStrada(giocatore.x, giocatore.y))
+                    return null;
+                else {
+                    giocatore.x = lx;
+                    giocatore.y = ly;
+                    giocatore.vx = 0;
+                    giocatore.vy = 0;
+                    giocatore.traccia.push({ x: lx, y: ly });
+                    this.nuovoTurno();
+                    return null;
+                }
             }
         }
 

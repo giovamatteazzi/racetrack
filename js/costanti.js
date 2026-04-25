@@ -1,11 +1,9 @@
 export const CANVA = {
-    DIM_CELLA: 0,
-    R_GEN: 3, // generico raggio dei punti dentro/fuori
     R_ATT: 9, // raggio posizione attuale giocatori
     R_PAS: 3, // raggio posizioni passate giocatori
     SPE_GRI: 1,
     SPE_TRA: 2, // spessore traccia
-    SPE_INI: 3, // spessore riga inizio
+    SPE_INI: 3, // spesssore riga inizio
     SPE_FIN: 6, // spessore riga fine
     L_QUO: 12, // lato quadrato
     L_QUINO: 8 // lato quadratino

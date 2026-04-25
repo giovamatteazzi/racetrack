@@ -1,5 +1,5 @@
 import { CANVA } from "./costanti.js";
-const { DIM_CELLA, R_GEN, R_ATT, R_PAS, SPE_GRI, SPE_TRA, SPE_INI, SPE_FIN, L_QUO, L_QUINO } = CANVA;
+const { R_ATT, R_PAS, SPE_GRI, SPE_TRA, SPE_INI, SPE_FIN, L_QUO, L_QUINO } = CANVA;
 import { SIMBOLO } from "./costanti.js";
 const { FUORI, DENTRO, INIZIO_1, INIZIO_N, INIZIO, FINE_1, FINE_N, FINE } = SIMBOLO;
 import { TIPO_PUNTO } from "./costanti.js";
@@ -14,6 +14,8 @@ export class GraficaCanvas {
         this.ridimensiona();
         this.ctx = canvas.getContext("2d");
         this.pista = pista;
+
+        this.xj, this.yj, this.xk, this.yk, this.xg, this.yg, this.xh, this.yh;
 
     }
 
@@ -45,48 +47,6 @@ export class GraficaCanvas {
         }
     }
 
-    disegnaPista2() {
-
-        let xj, yj, xk, yk;
-        let xg, yg, xh, yh;
-
-        for (let y = 0; y < this.altezza; y++) {
-            for (let x = 0; x < this.larghezza; x++) {
-
-                const punto = this.pista.matrice[y][x];
-
-                switch (punto) {
-                    case (INIZIO_1): xj = x; yj = y; break;
-                    case (INIZIO_N): xk = x; yk = y; break;
-                    case (FINE_1): xg = x; yg = y; break;
-                    case (FINE_N): xh = x; yh = y; break;
-                }
-                let colore;
-                if (punto === FUORI)
-                    colore = "#111827";
-                else
-                    colore = "#f8fafc"
-
-                this.ctx.fillStyle = colore;
-                let lato = this.dimCella + 1;
-                if (x === this.larghezza - 1 || y === this.altezza - 1)
-                    lato = this.dimCella * 3 / 2;
-                this.ctx.fillRect(x * this.dimCella - this.dimCella / 2, y * this.dimCella - this.dimCella / 2, lato, lato);
-            }
-        }
-
-        this.ctx.strokeStyle = "black";
-        this.ctx.lineWidth = SPE_PIS;
-        this.ctx.beginPath();
-        this.ctx.moveTo(xj * this.dimCella, yj * this.dimCella);
-        this.ctx.lineTo(xk * this.dimCella, yk * this.dimCella);
-        this.ctx.stroke();
-        this.ctx.beginPath();
-        this.ctx.moveTo(xg * this.dimCella, yg * this.dimCella);
-        this.ctx.lineTo(xh * this.dimCella, yh * this.dimCella);
-        this.ctx.stroke();
-    }
-
     disegnaPista() {
 
         let xj, yj, xk, yk;
@@ -98,67 +58,86 @@ export class GraficaCanvas {
                 const punto = this.pista.matrice[y][x];
 
                 switch (punto) {
-                    case (INIZIO_1): xj = x; yj = y; break;
-                    case (INIZIO_N): xk = x; yk = y; break;
-                    case (FINE_1): xg = x; yg = y; break;
-                    case (FINE_N): xh = x; yh = y; break;
-                }
-
-                if (punto === FUORI) {
-                    this.ctx.fillStyle = "#444";
-                    this.ctx.beginPath();
-                    this.ctx.arc(x * this.dimCella, y * this.dimCella, R_GEN, 0, 2 * Math.PI);
-                    this.ctx.fill();
-                }
-
-                /* switch (punto) {
-                    case (INIZIO_1): xj = x; yj = y; break;
-                    case (INIZIO_N): xk = x; yk = y; break;
-                    case (FINE_1): xg = x; yg = y; break;
-                    case (FINE_N): xh = x; yh = y; break;
+                    case (INIZIO_1): this.xj = x; this.yj = y; break;
+                    case (INIZIO_N): this.xk = x; this.yk = y; break;
+                    case (FINE_1): this.xg = x; this.yg = y; break;
+                    case (FINE_N): this.xh = x; this.yh = y; break;
                 }
                 let colore;
                 if (punto === FUORI)
-                    colore = "black";
+                    colore = "#bbbbbb"
                 else
-                    colore = "white"
+                    colore = "#f8fafc"
 
                 this.ctx.fillStyle = colore;
-                this.ctx.beginPath();
-                this.ctx.arc(x * this.dimCella, y * this.dimCella, R_GEN, 0, 2 * Math.PI);
-                this.ctx.fill(); */
+                let lato = this.dimCella + 1;
+                if (x === this.larghezza - 1 || y === this.altezza - 1)
+                    lato = this.dimCella * 3 / 2;
+                this.ctx.fillRect(x * this.dimCella - this.dimCella / 2, y * this.dimCella - this.dimCella / 2, lato, lato);
             }
         }
 
-        /* this.ctx.strokeStyle = "black";
-        this.ctx.lineWidth = SPE_PIS;
-        this.ctx.beginPath();
-        this.ctx.moveTo(xj * this.dimCella, yj * this.dimCella);
-        this.ctx.lineTo(xk * this.dimCella, yk * this.dimCella);
-        this.ctx.stroke();
-        this.ctx.beginPath();
-        this.ctx.moveTo(xg * this.dimCella, yg * this.dimCella);
-        this.ctx.lineTo(xh * this.dimCella, yh * this.dimCella);
-        this.ctx.stroke(); */
+    }
 
+    disegnaInizioFine() {
         this.ctx.strokeStyle = "black";
         this.ctx.lineWidth = SPE_INI;
         this.ctx.setLineDash([4, 4]);
         this.ctx.beginPath();
-        this.ctx.moveTo(xj * this.dimCella, yj * this.dimCella);
-        this.ctx.lineTo(xk * this.dimCella, yk * this.dimCella);
+        this.ctx.moveTo(this.xj * this.dimCella, this.yj * this.dimCella);
+        this.ctx.lineTo(this.xk * this.dimCella, this.yk * this.dimCella);
         this.ctx.stroke();
 
         this.ctx.strokeStyle = "black";
         this.ctx.lineWidth = SPE_FIN;
         this.ctx.setLineDash([10, 10]);
+        let x1 = this.xg * this.dimCella;
+        let y1 = this.yg * this.dimCella;
+        let x2 = this.xh * this.dimCella;
+        let y2 = this.yh * this.dimCella;
         this.ctx.beginPath();
-        this.ctx.moveTo(xg * this.dimCella, yg * this.dimCella);
-        this.ctx.lineTo(xh * this.dimCella, yh * this.dimCella);
+        this.ctx.moveTo(x1, y1);
+        this.ctx.lineTo(x2, y2);
         this.ctx.stroke();
 
-        this.ctx.setLineDash([]);
+        let dx = x2 - x1;
+        let dy = y2 - y1;
 
+        let len = Math.sqrt(dx * dx + dy * dy);
+
+        // normale unitaria
+        let nx = -dy / len;
+        let ny = dx / len;
+
+        // metà spessore della linea
+        let h = SPE_FIN / 2;
+
+        // 4 vertici del rettangolo
+        let p1x = x1 + nx * h;
+        let p1y = y1 + ny * h;
+
+        let p2x = x2 + nx * h;
+        let p2y = y2 + ny * h;
+
+        let p3x = x2 - nx * h;
+        let p3y = y2 - ny * h;
+
+        let p4x = x1 - nx * h;
+        let p4y = y1 - ny * h;
+
+
+        // bordo nero spessore 1
+        this.ctx.setLineDash([]);
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = "black";
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(p1x, p1y);
+        this.ctx.lineTo(p2x, p2y);
+        this.ctx.lineTo(p3x, p3y);
+        this.ctx.lineTo(p4x, p4y);
+        this.ctx.closePath();
+        this.ctx.stroke();
     }
 
     disegnaPosizione(giocatore) {
@@ -240,8 +219,9 @@ export class GraficaCanvas {
 
     aggiorna(partita) {
         this.pulisci();
-        this.disegnaGriglia();
         this.disegnaPista();
+        this.disegnaGriglia();
+        this.disegnaInizioFine();
 
         for (let i = 0; i < partita.giocatori.length; i++) {
             this.disegnaTraccia(partita.giocatori[i]);
