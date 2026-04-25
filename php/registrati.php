@@ -47,11 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo json_encode([
             "stato" => "ok",
             "messaggio" => "Utente registrato correttamente.",
-            "data" => [
-                "utente_id" => $utente_id
-            ],
-            "token" => $token
-
         ]);
 
     } else {

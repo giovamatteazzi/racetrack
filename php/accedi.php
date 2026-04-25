@@ -28,20 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $utente["password_hash"])) {
 
             $token = bin2hex(random_bytes(32)); 
-            $_SESSION["utente_id"] = $utente["id"]; 
-            $_SESSION["token"] = $token; 
+            $_SESSION["utente_id"] = $utente["id"];
+            $_SESSION["token"] = $token;
 
             setcookie("session_token", $token, time() + 3600*24, "/", "", false, true); 
-
-            // cose da recuperare vanno messe in data
 
             echo json_encode([
                 "stato" => "ok",
                 "messaggio" => "Completato l'accesso correttamente.",
-                "data" => [
-                    "utente_id" => $utente["id"] 
-                ],
-                "token" => $token
             ]); 
         
         }

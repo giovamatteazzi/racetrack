@@ -39,6 +39,6 @@ const pista2 = `
 `.trim().split('\n');
 
 export const piste = {
-    "pista1": pista1,
-    "pista2": pista2
+    "1": pista1,
+    "2": pista2
 };

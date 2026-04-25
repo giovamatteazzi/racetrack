@@ -30,7 +30,7 @@
 
 
     <aside id="pannello-sinistro">
-        <div id="registrazione" class="form-primario">
+        <div id="registrazione" class="form-autenticazione">
             <h2>Registrati</h2>
             <form id="form-registrazione" novalidate>
                 <div class="form-gruppo">
@@ -50,7 +50,7 @@
         </div>
 
 
-        <div id="accesso" class="form-primario nascosto">
+        <div id="accesso" class="form-autenticazione nascosto">
             <h2>Accedi</h2>
             <form id="form-accesso" novalidate>
                 <div class="form-gruppo">
@@ -67,6 +67,16 @@
                 </p>
             </form>
         </div>
+
+        <div id="statistiche" class="nascosto">
+            <p id="stat-testo">Ecco le statistiche delle partite registrate.</p>
+            <select id="pista-statistiche">
+                <option value="">Tutte</option>
+                <option value="1">Pista 1</option>
+                <option value="2">Pista 2</option>
+            </select>
+            <div id="statistiche-container"></div>
+        </div>
     </aside>
 
 
@@ -75,8 +85,8 @@
 
             <select id="seleziona-pista" required>
                 <option value="" selected>Pista</option>
-                <option value="pista1">Pista 1</option>
-                <option value="pista2">Pista 2</option>
+                <option value="1">Pista 1</option>
+                <option value="2">Pista 2</option>
             </select>
 
             <div id="giocatori-container">

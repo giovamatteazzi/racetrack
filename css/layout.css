@@ -5,8 +5,8 @@ header {
     align-items: center;
     grid-column: span 2;
     padding: 0 1rem;
-    background-color: #1e293b;
-    color: white;
+    background-color: var(--sfondo-pannello);
+    color: var(--testo-bianco);
 }
 
 #titolo {
@@ -27,8 +27,8 @@ header {
 
 #pannello-sinistro,
 #pannello-destro {
-    background-color: #1e293b;
-    color: #e2e8f0;
+    background-color: var(--sfondo-pannello);
+    color: var(--testo-chiaro);
 }
 
 #pannello-sinistro {

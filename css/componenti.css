@@ -7,58 +7,18 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    opacity: 0.8;
-}
-
 .pulsante-primario {
-    background-color: rgb(120, 152, 237);
+    background-color: var(--pulsante-primario);
 }
 
 .pulsante-primario:hover {
-    background-color: rgb(81, 118, 219);
+    background-color: var(--pulsante-primario-hover);
 }
 
 .pulsante-secondario {
-    background-color: #dc2626;
+    background-color: var(--pulsante-secondario);
 }
 
 .pulsante-secondario:hover {
-    background-color: #b91c1c;
-}
-
-.form-primario {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    padding: 0.5rem;
-    padding: 1rem;
-    border: 1px solid #334155;
-    border-radius: 10px;
-    background-color: #0f172a;
-}
-
-.form-gruppo {
-    display: flex;
-    flex-direction: column;
-    padding: 0.2rem;
-}
-
-form input,
-form select {
-    padding: 0.4rem;
-    border: 1px solid #475569;
-    border-radius: 6px;
-    background-color: lightgray;
-    color: black;
-}
-
-.cambia-form {
-    font-size: 0.8rem;
-    text-decoration: underline;
-    color: white;
-}
-
-.cambia-form:hover {
-    color: rgb(120, 152, 237)
+    background-color: var(--pulsante-secondario-hover);
 }

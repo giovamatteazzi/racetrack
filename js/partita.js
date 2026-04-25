@@ -169,7 +169,7 @@ export class Partita {
                 giocatore.y = ly;
                 giocatore.traccia.push({ x: lx, y: ly });
                 this.termina();
-                return giocatore;
+                return { giocatore: giocatore, id: this.turno };
             }
 
             if (!this.pista.inStrada(lx, ly)) {

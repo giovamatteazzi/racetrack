@@ -1,9 +1,8 @@
 export class ContestoApi {
 
     constructor() {
-        this.data = null;
-        this.token = null;
         this.autenticato = false;
+        this.partite = [];
     }
 
     async registrati(nomeUtente, password) {
@@ -12,6 +11,7 @@ export class ContestoApi {
         try {
             const response = await fetch("../php/registrati.php", {
                 method: "POST",
+                credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -21,8 +21,6 @@ export class ContestoApi {
             const risData = await response.json();
 
             if (risData.stato === "ok") {
-                this.data = risData.data;
-                this.token = risData.token;
                 this.autenticato = true;
             }
             else {
@@ -44,6 +42,7 @@ export class ContestoApi {
         try {
             const response = await fetch("../php/accedi.php", {
                 method: "POST",
+                credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -53,22 +52,91 @@ export class ContestoApi {
             const resData = await response.json();
 
             if (resData.stato === "ok") {
-                this.data = resData.data;
-                this.token = resData.token;
                 this.autenticato = true;
+                await this.ottieniPartite();
 
-            } else {
+            }
+            else {
                 alert(resData.messaggio);
                 this.autenticato = false;
             };
 
-        } catch (error) {
+        }
+        catch (error) {
             console.error("Errore: ", error);
             alert("Errore inaspettato");
             this.autenticato = false;
-
         }
 
+    }
+
+    async salvaPartita(partita, vincitore) {
+        if (!this.autenticato)
+            return;
+
+        let nomeA = partita.giocatori[0].nome;
+        let nomeB = partita.giocatori[1].nome;
+        if (nomeA.localeCompare(nomeB) > 0)
+            [nomeA, nomeB] = [nomeB, nomeA];
+
+        const payload = {
+            giocatoreA: nomeA,
+            giocatoreB: nomeB,
+            vincitore: vincitore,
+            mosse: Math.floor(partita.mosse),
+            pista: parseInt(partita.pista.id)
+        };
+
+        try {
+            const response = await fetch("../php/salva_partita.php", {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const resData = await response.json();
+
+            if (resData.stato === "ok") {
+                await this.ottieniPartite();
+            }
+            else {
+                alert(resData.messaggio);
+            };
+        }
+
+        catch (error) {
+            console.error("Errore salvataggio partita: ", error);
+        }
+    }
+
+    async ottieniPartite() {
+
+        try {
+            const response = await fetch(
+                "../php/ottieni_partite.php",
+                {
+                    method: "GET",
+                    credentials: "same-origin"
+                }
+            );
+
+            const resData = await response.json();
+
+            if (resData.stato === "ok") {
+                this.partite = resData.data;
+            }
+
+            else {
+                alert(resData.messaggio);
+            };
+        }
+
+        catch (error) {
+            console.error(error);
+        }
     }
 
 }

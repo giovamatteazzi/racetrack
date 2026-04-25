@@ -1,9 +1,11 @@
+import { piste } from "./dati.js";
 import { SIMBOLO } from "./costanti.js";
 
 export class Pista {
 
-    constructor(matrice) {
-        this.matrice = matrice;
+    constructor(idPista) {
+        this.matrice = piste[idPista];
+        this.id = idPista;
         this.partenze = this.trovaPartenze();
     }
 

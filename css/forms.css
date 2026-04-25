@@ -1,0 +1,34 @@
+.form-autenticazione {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--bordo);
+    border-radius: 10px;
+    background-color: var(--sfondo-card);
+}
+
+.form-gruppo {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+}
+
+form input,
+form select {
+    padding: 0.4rem;
+    border: 1px solid var(--bordo);
+    border-radius: 6px;
+    background-color: var(--input);
+    color: var(--testo-scuro);
+}
+
+.cambia-form {
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: var(--testo-chiaro);
+}
+
+.cambia-form:hover {
+    color: var(--pulsante-primario-hover)
+}

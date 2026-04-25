@@ -2,7 +2,6 @@ import { GraficaHTML } from "./ui.js";
 import { Partita } from "./partita.js"
 import { GraficaCanvas } from "./canvas.js";
 import { Pista } from "./pista.js";
-import { piste } from "./dati.js";
 import { Giocatore } from "./giocatore.js";
 import { COL_GIOCATORI, STATO, CANVA } from "./costanti.js";
 import { TIPO_PUNTO } from "./costanti.js";
@@ -46,7 +45,6 @@ class RaceTrack {
             }
 
             if (!form.checkValidity()) {
-                e.preventDefault();
                 form.reportValidity();
                 return;
             }
@@ -84,7 +82,6 @@ class RaceTrack {
             if (!password.checkValidity())
                 password.setCustomValidity("Includi una cifra e un simbolo speciale tra ! # $ % & * ^ _ - ~, compresa tra i 6 e i 30 caratteri.");
             if (!form.checkValidity()) {
-                e.preventDefault();
                 form.reportValidity();
                 return;
             }
@@ -97,13 +94,19 @@ class RaceTrack {
             const password = document.getElementById("password-accesso");
             this.gestisciAccesso(nomeUtente.value.trim(), password.value.trim());
         });
+
+        this.selezionata = null;
+        document.getElementById("pista-statistiche").addEventListener("change", (e) => {
+            this.selezionata = e.target.value || null;
+            this.html.aggiornaStatistiche(this.calcolaStatistiche(this.api.partite, this.selezionata));
+        })
     }
 
     avviaPartita(e) {
         e.preventDefault();
 
-        const nomePista = document.getElementById("seleziona-pista").value;
-        this.pista = new Pista(piste[nomePista]);
+        const idPista = document.getElementById("seleziona-pista").value;
+        this.pista = new Pista(idPista);
 
         const nomeA = document.getElementById("giocatore-A").value;
         const nomeB = document.getElementById("giocatore-B").value;
@@ -140,14 +143,18 @@ class RaceTrack {
         return { x: x, y: y };
     }
 
-    gestisciClick(e) {
+    async gestisciClick(e) {
         let coordClick = this.ottieniCoordinate(e);
         if (!coordClick)
             return;
         const vincitore = this.partita.provaMossa(coordClick.x, coordClick.y);
         this.can.aggiorna(this.partita);
         if (vincitore) {
-            this.html.mostraVincitore(vincitore)
+            this.html.mostraVincitore(vincitore.giocatore)
+
+            await this.api.salvaPartita(this.partita, vincitore.id);
+            this.html.aggiornaStatistiche(this.calcolaStatistiche(this.api.partite, this.selezionata));
+
             return;
         }
         this.html.aggiornaTurni(this.partita);
@@ -172,6 +179,7 @@ class RaceTrack {
         await this.api.registrati(nomeUtente, password);
         if (this.api.autenticato) {
             this.html.entra(nomeUtente);
+            this.html.mostraStatistiche();
         }
     }
 
@@ -179,6 +187,60 @@ class RaceTrack {
         await this.api.accedi(nomeUtente, password);
         if (this.api.autenticato) {
             this.html.entra(nomeUtente);
+            this.html.aggiornaStatistiche(this.calcolaStatistiche(this.api.partite));
+            this.html.mostraStatistiche();
         }
+    }
+
+    calcolaStatistiche(partite, filtroPista = null) {
+
+        let stats = {};
+
+        let partiteFiltrate;
+        if (filtroPista === null) {
+            partiteFiltrate = partite;
+        }
+        else {
+            partiteFiltrate = partite.filter(par => Number(par.pista) === Number(filtroPista));
+        }
+
+        for (const par of partiteFiltrate) {
+
+            const chiave = par.giocatore_a + "|" + par.giocatore_b;
+
+            if (!stats[chiave]) {
+                stats[chiave] = {
+                    giocatoreA: par.giocatore_a,
+                    giocatoreB: par.giocatore_b,
+                    partite: 0,
+                    vittorieA: 0,
+                    vittorieB: 0,
+                    percVittA: null,
+                    percVittB: null,
+                    minMosseA: Infinity,
+                    minMosseB: Infinity
+                };
+            }
+
+            let att = stats[chiave];
+            att.partite++;
+
+            if (Number(par.vincitore) === 0) {
+                att.vittorieA++;
+                if (par.mosse < att.minMosseA)
+                    att.minMosseA = par.mosse;
+            }
+            else {
+                att.vittorieB++;
+                if (par.mosse < att.minMosseB)
+                    att.minMosseB = par.mosse;
+            }
+
+            att.percVittA = Math.round(att.vittorieA / att.partite * 100);
+            att.percVittB = Math.round(att.vittorieB / att.partite * 100);
+
+        }
+
+        return Object.values(stats);
     }
 }

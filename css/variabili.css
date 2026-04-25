@@ -1,0 +1,31 @@
+:root {
+
+    --sfondo-base: #ffffff;
+    --sfondo-pannello: #1e293b;
+    --sfondo-card: #0f172a;
+    --sfondo-tabella: #020617;
+
+    --testo-scuro: #000000;
+    --testo-bianco: #ffffff;
+    --testo-chiaro: #e2e8f0;
+
+    --bordo: #334155;
+
+    --input: #cccccc;
+
+    --pulsante-primario: #7898ed;
+    --pulsante-primario-hover: #5176db;
+    --pulsante-secondario: #dc2626;
+    --pulsante-secondario-hover: #b91c1c;
+
+    --sfondo-schermata: #571313;
+    --bordo-schermata: #991b1b;
+
+    --verde-scuro: darkgreen;
+    --verde: lightgreen;
+    --arancione: orange;
+    --rosso: darkred;
+
+    --ombra: rgba(0, 0, 0, .2);
+
+}
