@@ -104,7 +104,7 @@ export class GraficaHTML {
 
             const tabella = document.createElement("table");
             container.appendChild(tabella);
-            tabella.id = "tabella-statistiche";
+            tabella.classList.add("tabella-statistiche");
             const thead = document.createElement("thead");
             tabella.appendChild(thead);
             const trHead = document.createElement("tr");

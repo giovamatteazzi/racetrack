@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         VALUES (?, ?, ?, ?, ?, ?)
     ");
 
-    $query->bind_param("isssii", $utente_id, $giocatore_a, $giocatore_b, $vincitore, $mosse, $pista);
+    $query->bind_param("issiii", $utente_id, $giocatore_a, $giocatore_b, $vincitore, $mosse, $pista);
 
     if ($query->execute()) {
         echo json_encode([

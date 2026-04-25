@@ -49,9 +49,6 @@ export class GraficaCanvas {
 
     disegnaPista() {
 
-        let xj, yj, xk, yk;
-        let xg, yg, xh, yh;
-
         for (let y = 0; y < this.altezza; y++) {
             for (let x = 0; x < this.larghezza; x++) {
 

@@ -35,12 +35,14 @@
             <form id="form-registrazione" novalidate>
                 <div class="form-gruppo">
                     <label for="nome-utente-registrazione">Nome utente</label>
-                    <input type="text" id="nome-utente-registrazione" pattern="^[A-Za-z0-9!#$%&*^_-~]{3,30}$" required>
+                    <input type="text" id="nome-utente-registrazione" pattern="^[A-Za-z0-9!#$%&*^_-~]{3,30}$"
+                        placeholder="Gio" required>
                 </div>
                 <div class="form-gruppo">
                     <label for="password-registrazione">Password</label>
                     <input type="password" id="password-registrazione"
-                        pattern="^(?=.*\d)(?=.*[!#$%&*^_\-~])[A-Za-z\d!#$%&*^_\-~]{6,30}$" required>
+                        pattern="^(?=.*\d)(?=.*[!#$%&*^_\-~])[A-Za-z\d!#$%&*^_\-~]{6,30}$" placeholder="Prova123!"
+                        required>
                 </div>
                 <button type="submit" class="pulsante-primario">Registrati</button>
                 <p>Già registrato?
@@ -55,11 +57,11 @@
             <form id="form-accesso" novalidate>
                 <div class="form-gruppo">
                     <label for="nome-utente-accesso">Nome utente</label>
-                    <input type="text" id="nome-utente-accesso" required>
+                    <input type="text" id="nome-utente-accesso" placeholder="Gio" required>
                 </div>
                 <div class="form-gruppo">
                     <label for="password-accesso">Password</label>
-                    <input type="password" id="password-accesso" required>
+                    <input type="password" id="password-accesso" placeholder="Prova123!" required>
                 </div>
                 <button type="submit" class="pulsante-primario">Accedi</button>
                 <p>Non registrato?
@@ -97,6 +99,9 @@
                     <p>
                         Due ampie curve conducono al traguardo: l'ideale per cominciare.
                     </p>
+                    <p class="medaglia">
+                        Medaglia autore: <b>10 mosse</b>.
+                    </p>
                     <button type="button" class="btn-pista pulsante-secondario" data-pista="1">Gioca</button>
                 </div>
                 <div class="card-pista">
@@ -104,12 +109,18 @@
                     <p>
                         Subito un lunghissimo rettilineo, poi due svolte microscopiche.
                     </p>
+                    <p class="medaglia">
+                        Medaglia autore: <b>17 mosse</b>.
+                    </p>
                     <button type="button" class="btn-pista pulsante-secondario" data-pista="2">Gioca</button>
                 </div>
                 <div class="card-pista">
                     <h3>Dilemma</h3>
                     <p>
                         Doppia scelta sul lato da imboccare, fine in strettoia.
+                    </p>
+                    <p class="medaglia">
+                        Medaglia autore: <b>11 mosse</b>.
                     </p>
                     <button type="button" class="btn-pista pulsante-secondario" data-pista="3">Gioca</button>
                 </div>

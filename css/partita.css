@@ -54,10 +54,15 @@
 }
 
 .card-pista p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     line-height: 1.5;
     text-align: center;
     font-size: 0.9rem;
+}
+
+.medaglia {
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
 }
 
 #schermata-iniziale input {
