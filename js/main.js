@@ -22,34 +22,32 @@ class RaceTrack {
 
         this.api = new ContestoApi()
 
-        document.getElementById("inizia-partita").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const giocatoreA = document.getElementById("giocatore-A");
-            const giocatoreB = document.getElementById("giocatore-B");
-            const pista = document.getElementById("seleziona-pista");
-            giocatoreA.value = giocatoreA.value.trim();
-            giocatoreB.value = giocatoreB.value.trim();
-            giocatoreA.setCustomValidity("");
-            giocatoreB.setCustomValidity("");
-            pista.setCustomValidity("");
+        document.querySelectorAll(".btn-pista").forEach(btn => {
+            btn.addEventListener("click", (e) => {
 
-            if (!giocatoreA.checkValidity()) {
-                giocatoreA.setCustomValidity("Scrivi un nome compreso tra i 3 e 10 caratteri senza simboli speciali");
-            }
-            if (!giocatoreB.checkValidity()) {
-                giocatoreB.setCustomValidity("Scrivi un nome compreso tra i 3 e 10 caratteri senza simboli speciali");
-            }
-            if (pista.value === "") {
-                pista.setCustomValidity("Seleziona una pista");
-            }
+                const giocatoreA = document.getElementById("giocatore-A");
+                const giocatoreB = document.getElementById("giocatore-B");
+                giocatoreA.value = giocatoreA.value.trim();
+                giocatoreB.value = giocatoreB.value.trim();
+                giocatoreA.setCustomValidity("");
+                giocatoreB.setCustomValidity("");
 
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-            this.avviaPartita(e)
+                if (!giocatoreA.checkValidity()) {
+                    giocatoreA.setCustomValidity("Scrivi un nome compreso tra i 3 e 10 caratteri senza simboli speciali");
+                }
+                if (!giocatoreB.checkValidity()) {
+                    giocatoreB.setCustomValidity("Scrivi un nome compreso tra i 3 e 10 caratteri senza simboli speciali");
+                }
+
+                if (!giocatoreA.checkValidity() || !giocatoreB.checkValidity()) {
+                    document.getElementById("inizia-partita").reportValidity();
+                    return;
+                }
+                const idPista = e.target.dataset.pista;
+                this.avviaPartita(idPista)
+            })
         });
+
 
         document.getElementById("ricomincia-partita").addEventListener("click", () => this.html.mostraSchermata())
 
@@ -102,10 +100,8 @@ class RaceTrack {
         })
     }
 
-    avviaPartita(e) {
-        e.preventDefault();
+    avviaPartita(idPista) {
 
-        const idPista = document.getElementById("seleziona-pista").value;
         this.pista = new Pista(idPista);
 
         const nomeA = document.getElementById("giocatore-A").value;

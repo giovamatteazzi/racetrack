@@ -1,9 +1,11 @@
 button {
+    width: fit-content;
     margin: 1rem;
     padding: 0.35rem 0.7rem;
     border: solid 1px;
     border-radius: 2px;
     font-size: 0.85rem;
+    font-weight: bold;
     cursor: pointer;
 }
 

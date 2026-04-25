@@ -5,7 +5,7 @@
     padding: 1rem;
     border: 1px solid var(--bordo);
     border-radius: 10px;
-    background-color: var(--sfondo-card);
+    background-color: var(--sfondo-card1);
 }
 
 .form-gruppo {
@@ -30,5 +30,5 @@ form select {
 }
 
 .cambia-form:hover {
-    color: var(--pulsante-primario-hover)
+    color: var(--pulsante-primario-hover);
 }

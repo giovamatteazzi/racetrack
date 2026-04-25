@@ -72,8 +72,9 @@
             <p id="stat-testo">Ecco le statistiche delle partite registrate.</p>
             <select id="pista-statistiche">
                 <option value="">Tutte</option>
-                <option value="1">Pista 1</option>
-                <option value="2">Pista 2</option>
+                <option value="1">Chicane</option>
+                <option value="2">Imbuto</option>
+                <option value="3">Dilemma</option>
             </select>
             <div id="statistiche-container"></div>
         </div>
@@ -83,12 +84,6 @@
     <div id="schermata-iniziale">
         <form id="inizia-partita" novalidate>
 
-            <select id="seleziona-pista" required>
-                <option value="" selected>Pista</option>
-                <option value="1">Pista 1</option>
-                <option value="2">Pista 2</option>
-            </select>
-
             <div id="giocatori-container">
                 <input type="text" class="giocatore" id="giocatore-A" placeholder="Giocatore 1"
                     pattern="^[A-Za-z0-9\s]{3,10}$" required>
@@ -96,7 +91,30 @@
                     pattern="^[A-Za-z0-9\s]{3,10}$" required>
             </div>
 
-            <button type="submit" class="pulsante-secondario">Gioca</button>
+            <div id="selezione-piste">
+                <div class="card-pista">
+                    <h3>Chicane</h3>
+                    <p>
+                        Due ampie curve conducono al traguardo: l'ideale per cominciare.
+                    </p>
+                    <button type="button" class="btn-pista pulsante-secondario" data-pista="1">Gioca</button>
+                </div>
+                <div class="card-pista">
+                    <h3>Imbuto</h3>
+                    <p>
+                        Subito un lunghissimo rettilineo, poi due svolte microscopiche.
+                    </p>
+                    <button type="button" class="btn-pista pulsante-secondario" data-pista="2">Gioca</button>
+                </div>
+                <div class="card-pista">
+                    <h3>Dilemma</h3>
+                    <p>
+                        Doppia scelta sul lato da imboccare, fine in strettoia.
+                    </p>
+                    <button type="button" class="btn-pista pulsante-secondario" data-pista="3">Gioca</button>
+                </div>
+            </div>
+
         </form>
     </div>
 

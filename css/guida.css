@@ -5,9 +5,9 @@
 }
 
 body {
+    width: 80%;
     margin: 0 auto;
     padding: 2rem 0;
-    width: 80%;
     line-height: 1.6;
     background-color: var(--sfondo-pannello);
     color: var(--testo-bianco);
@@ -22,9 +22,9 @@ h1 {
 h2 {
     margin-top: 2rem;
     margin-bottom: 0.5rem;
-    font-size: 1.4rem;
-    border-bottom: 1px solid #334155;
     padding-bottom: 0.3rem;
+    border-bottom: 1px solid #334155;
+    font-size: 1.4rem;
 }
 
 p {
@@ -80,6 +80,7 @@ button {
     background-color: var(--pulsante-primario);
     color: var(--testo-scuro);
     font-size: 0.85rem;
+    font-weight: bold;
     cursor: pointer;
 }
 

@@ -2,12 +2,15 @@
 
     --sfondo-base: #ffffff;
     --sfondo-pannello: #1e293b;
-    --sfondo-card: #0f172a;
+    --sfondo-card1: #0f172a;
+    --sfondo-card2: rgb(173, 68, 68);
+
     --sfondo-tabella: #020617;
 
     --testo-scuro: #000000;
     --testo-bianco: #ffffff;
     --testo-chiaro: #e2e8f0;
+    --testo-acceso: darkred;
 
     --bordo: #334155;
 
@@ -25,6 +28,7 @@
     --verde: lightgreen;
     --arancione: orange;
     --rosso: darkred;
+    --bianco: white;
 
     --ombra: rgba(0, 0, 0, .2);
 

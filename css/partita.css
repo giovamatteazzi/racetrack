@@ -1,8 +1,8 @@
 #schermata-iniziale {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 90%;
     margin: 1rem auto;
     padding: 1.5rem;
@@ -20,8 +20,47 @@
     gap: 1rem;
 }
 
-#schermata-iniziale input,
-#schermata-iniziale select {
+#giocatori-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+#selezione-piste {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+}
+
+.card-pista {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    padding: 0.4rem;
+    border: 1px solid var(--bordo-schermata);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--ombra);
+    background-color: var(--sfondo-card2);
+}
+
+.card-pista h3 {
+    margin-bottom: 0rem;
+    text-align: center;
+    color: var(--sfondo-schermata);
+}
+
+.card-pista p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+#schermata-iniziale input {
     border: 1px solid var(--bordo-schermata);
     background-color: var(--sfondo-base);
     color: var(--testo-scuro);
