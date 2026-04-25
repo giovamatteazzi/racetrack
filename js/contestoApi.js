@@ -76,8 +76,6 @@ export class ContestoApi {
 
         let nomeA = partita.giocatori[0].nome;
         let nomeB = partita.giocatori[1].nome;
-        if (nomeA.localeCompare(nomeB) > 0)
-            [nomeA, nomeB] = [nomeB, nomeA];
 
         const payload = {
             giocatoreA: nomeA,

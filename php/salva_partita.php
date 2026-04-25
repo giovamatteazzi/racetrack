@@ -28,10 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $utente_id = $_SESSION["utente_id"];
 
+    // salva in ordine alfabetico
     if (strcmp($giocatore_a, $giocatore_b) > 0) {
         $tmp = $giocatore_a;
         $giocatore_a = $giocatore_b;
         $giocatore_b = $tmp;
+        // invertire anche il vincitore
+        $vincitore = 1 - $vincitore;
     }
 
     $query = $conn->prepare("
